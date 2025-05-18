@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Game</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>The Game</h1>
+    
+    <div class="counter"><%= user.count %></div>
+    
+    <% if (user.count >= goal) { %>
+      <div class="success-message">
+        <a href="/nextlevel" class="next-link">NEXT LEVEL</a>
+      </div>
+    <% } else { %>
+      <form action="/game/click" method="POST" id="clickForm">
+        <button type="submit" class="click-button" id="clickButton">CLICK ME</button>
+      </form>
+      <script>
+        document.getElementById('clickForm').addEventListener('submit', function() {
+          document.getElementById('clickButton').disabled = true;
+          document.getElementById('clickButton').innerText = '...';
+        });
+      </script>
+    <% } %>
+  </div>
+</body>
+</html> 

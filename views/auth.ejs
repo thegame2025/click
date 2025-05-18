@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Game</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>The Game</h1>
+    
+    <% if(typeof error !== 'undefined') { %>
+      <div style="color: red; margin-bottom: 10px;"><%= error %></div>
+    <% } %>
+    
+    <div class="auth-form">
+      <form action="/auth" method="POST">
+        <div class="form-group">
+          <input type="text" id="username" name="username" placeholder="username" required>
+        </div>
+        
+        <div class="form-group">
+          <input type="password" id="password" name="password" placeholder="password" required>
+        </div>
+        
+        <button type="submit" style="width: 100%; margin-top: 15px;">ENTER</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html> 
