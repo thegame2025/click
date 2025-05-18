@@ -10,8 +10,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
-// Note: URL encoding the @ in the password
-mongoose.connect('mongodb+srv://thegame2025:METIN%4094@thegame.zn1lsam.mongodb.net/?retryWrites=true&w=majority&appName=TheGame')
+// Use environment variable or fallback to hardcoded string
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://thegame2025:METIN%4094@thegame.zn1lsam.mongodb.net/?retryWrites=true&w=majority&appName=TheGame';
+mongoose.connect(MONGODB_URI)
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
@@ -20,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: 'secret-key-90s-game',
+  secret: process.env.SESSION_SECRET || 'secret-key-90s-game',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 3600000 } // 1 hour
